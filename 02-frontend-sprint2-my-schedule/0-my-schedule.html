@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Schedule</title>
+    <link rel="stylesheet" href="./output.css">
+    <script src="./my-schedule.js" defer></script>
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-900">
+    <main class="mx-auto max-w-7xl px-6 py-6 lg:px-8">
+        <div class="rounded-xl bg-white px-4 py-6">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                    <a href="./index.html" class="text-sm text-purple-700">← Class Schedule</a>
+                    <h1 class="mt-3 text-3xl font-bold">My Schedule</h1>
+                    <p data-testid="user-name" class="mt-3 text-sm text-slate-600"></p>
+                    <p data-testid="student-profile" class="mt-1 text-sm text-slate-600" hidden></p>
+                </div>
+                <button id="sign-out" type="button" class="rounded-lg border border-slate-300 px-4 py-2 text-sm" hidden>Sign Out</button>
+            </div>
+        </div>
+
+        <p data-testid="lecturer-message" class="mt-6 rounded-xl bg-white p-6" hidden>The lecturer view is coming soon</p>
+        <p data-testid="not-student" class="mt-6 rounded-xl bg-white p-6" hidden>Your account is not a student of the BSc.IT program.</p>
+
+        <section id="schedule-section" class="mt-6 rounded-xl border border-slate-200 bg-white p-5" hidden>
+            <h2 class="mb-4 text-xl font-semibold">My Schedule</h2>
+            <p class="mb-2 text-xs text-slate-500 sm:hidden">Swipe sideways to see all columns.</p>
+            <div class="overflow-x-auto" tabindex="0" aria-label="My Schedule table, scroll horizontally for more columns">
+                <table data-testid="my-schedule" class="w-full min-w-[1080px] border-collapse text-sm">
+                    <thead class="bg-slate-100"><tr>
+                        <th class="px-4 py-4 text-left">Code</th><th class="px-4 py-4 text-left">Title</th>
+                        <th class="px-4 py-4 text-left">Type</th><th class="px-4 py-4 text-left">Section</th>
+                        <th class="px-4 py-4 text-left">Group</th><th class="px-4 py-4 text-left">Day</th>
+                        <th class="px-4 py-4 text-left">Time</th><th class="px-4 py-4 text-left">Weeks</th>
+                        <th class="px-4 py-4 text-left">Room</th><th class="px-4 py-4 text-left">Remarks</th>
+                    </tr></thead>
+                    <tbody id="my-schedule-body"></tbody>
+                </table>
+            </div>
+            <p data-testid="my-schedule-empty" class="p-6 text-center text-sm text-slate-600" hidden>No classes yet. Choose from Courses to Choose.</p>
+        </section>
+
+        <section id="options-section" class="mt-6 rounded-xl border border-slate-200 bg-white p-5" hidden>
+            <h2 class="mb-4 text-xl font-semibold">Courses to Choose</h2>
+            <p class="mb-2 text-xs text-slate-500 sm:hidden">Swipe sideways to see all columns.</p>
+            <div class="overflow-x-auto" tabindex="0" aria-label="Courses to Choose table, scroll horizontally for more columns">
+                <table data-testid="course-options" class="w-full min-w-[1080px] border-collapse text-sm">
+                    <thead class="bg-slate-100"><tr>
+                        <th class="px-4 py-4 text-left">Code</th><th class="px-4 py-4 text-left">Title</th>
+                        <th class="px-4 py-4 text-left">Type</th><th class="px-4 py-4 text-left">Section</th>
+                        <th class="px-4 py-4 text-left">Group</th><th class="px-4 py-4 text-left">Day</th>
+                        <th class="px-4 py-4 text-left">Time</th><th class="px-4 py-4 text-left">Weeks</th>
+                        <th class="px-4 py-4 text-left">Room</th><th class="px-4 py-4 text-left">Remarks</th>
+                    </tr></thead>
+                    <tbody id="options-body"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <dialog id="error-dialog" aria-modal="true" closedby="none" class="rounded-xl bg-white p-6">
+        <p>There is a problem. Please try again later.</p>
+    </dialog>
+    <dialog id="message-dialog" aria-modal="true" aria-labelledby="message-text" class="rounded-xl bg-white p-6 shadow-lg">
+        <p id="message-text"></p>
+        <div class="mt-5 text-right">
+            <button id="message-ok" type="button" class="rounded-lg bg-purple-600 px-4 py-2 text-white">OK</button>
+        </div>
+    </dialog>
+    <dialog id="remove-dialog" aria-modal="true" aria-labelledby="remove-question" class="rounded-xl bg-white p-6 shadow-lg">
+        <p id="remove-question"></p>
+        <form method="dialog" class="mt-5 flex justify-end gap-3">
+            <button type="submit" value="cancel" class="rounded-lg border border-slate-300 px-4 py-2">Cancel</button>
+            <button type="submit" value="remove" class="rounded-lg bg-purple-600 px-4 py-2 text-white">Remove</button>
+        </form>
+    </dialog>
+    <dialog id="change-dialog" aria-modal="true" aria-labelledby="change-title" class="rounded-xl bg-white p-6 shadow-lg">
+        <p id="change-title" class="font-semibold">Change section</p>
+        <form method="dialog">
+            <fieldset id="change-options" class="mt-4"></fieldset>
+            <div class="mt-5 flex justify-end gap-3">
+                <button type="submit" value="cancel" class="rounded-lg border border-slate-300 px-4 py-2">Cancel</button>
+                <button id="change-confirm" type="submit" value="change" class="rounded-lg bg-purple-600 px-4 py-2 text-white disabled:opacity-50" disabled>Change</button>
+            </div>
+        </form>
+    </dialog>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./output.css">
+    <script src="./app.js" defer></script>
+</head>
+<body class="min-h-screen bg-slate-100">
+    <main class="mx-auto max-w-7xl px-6 py-6 sm:px-6 lg:px-8">
+        <div class="rounded-xl bg-white px-4 py-6">
+            <h1 class="text-3xl font-bold text-slate-900">
+                Class Schedule
+            </h1>
+
+            <p class="mt-4 text-sm text-slate-500">
+                BSc.IT Program — Academic Schedule
+            </p>
+            <a href="./my-schedule.html" class="mt-4 inline-block rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white">My Schedule</a>
+              <div class="flex flex-wrap gap-2  mt-6">
+            <button type="button" aria-pressed="true" data-year-level="all" class="rounded-lg bg-purple-600 px-4 py-2 border text-white border-slate-300" >
+            All
+            </button>
+             <button type="button" aria-pressed="false" data-year-level="1" class="rounded-lg bg-white px-4 py-2 border text-black border-slate-300">
+            Year 1
+            </button>
+             <button type="button" aria-pressed="false" data-year-level="2" class="rounded-lg bg-white px-4 py-2 border text-black border-slate-300">
+            Year 2
+            </button>
+             <button type="button" aria-pressed="false" data-year-level="3" class="rounded-lg bg-white px-4 py-2 border text-black border-slate-300">
+            Year 3
+            </button>
+             <button type="button" aria-pressed="false" data-year-level="4" class="rounded-lg bg-white px-4 py-2 border text-black border-slate-300">
+            Year 4
+            </button>
+        </div>
+       
+    </div>
+    <div class="class-schedule mt-6 overflow-x-auto border rounded-xl border-slate-200 mx-auto p-5">
+    <table data-testid="schedule-table" class="table-schedule w-full min-w-[980px] border-collapse text-sm">
+
+        <thead class="class-content bg-slate-100">
+            <tr>    
+                <th class="px-4 py-4 text-left">Code</th>
+                <th class="px-4 py-4 text-left">Title</th>
+                <th class="px-4 py-4 text-left">Type</th>
+                <th class="px-4 py-4 text-left">Section</th>
+                <th class="px-4 py-4 text-left">Group</th>
+                <th class="px-4 py-4 text-left">Day</th>
+                <th class="px-4 py-4 text-left">Time</th>
+                <th class="px-4 py-4 text-left">Weeks</th>
+                <th class="px-4 py-4 text-left">Remarks</th>
+            </tr>
+        </thead>
+
+        <tbody id="schedule-body">
+
+        </tbody>
+    </table>
+    <p id="empty-message" data-testid="empty-message" class="hidden p-6 text-center text-sm">
+         There is currently no class schedule. Please check back later.
+    </p>
+    
+   </div>
+    </main>
+   
+
+   
+
+<dialog id="error-dialog" role="dialog" aria-modal="true"
+       aria-labelledby="error-message" closedby="none"
+       class="rounded-xl bg-white p-6">
+       <p id="error-message">There is a problem. Please try again later.</p>
+   </dialog>
+</body>
+</html>

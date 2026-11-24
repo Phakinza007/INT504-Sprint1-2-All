@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum CourseType {
+  CORE
+  ELECTIVE
+}
+
+enum DayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+enum StudentGroup {
+  A
+  B
+}
+
+model Course {
+  id        Int              @id @default(autoincrement())
+  code      String           @db.Char(6)
+  title     String           @db.VarChar(100)
+  type      CourseType
+  yearLevel Int              @map("year_level")
+  schedules CourseSchedule[]
+  selections Selection[]
+
+  @@unique([code, title])
+  @@map("courses")
+}
+
+model CourseSchedule {
+  id           Int           @id @default(autoincrement())
+  courseId     Int           @map("course_id")
+  course       Course        @relation(fields: [courseId], references: [id])
+  section      Int
+  startWeek    Int           @map("start_week")
+  endWeek      Int           @map("end_week")
+  dayOfWeek    DayOfWeek     @map("day_of_week")
+  startTime    DateTime      @map("start_time") @db.Time(0)
+  endTime      DateTime      @map("end_time") @db.Time(0)
+  room         String?       @db.VarChar(20)
+  studentGroup StudentGroup? @map("student_group")
+  remarks      String?       @db.VarChar(255)
+
+  @@index([courseId])
+  @@map("courses_schedule")
+}
+
+model AcademicSettings {
+  id                  Int    @id
+  currentAcademicYear Int    @map("current_academic_year")
+  currentSemester     Int    @map("current_semester")
+  programCode         String @map("program_code") @db.Char(6)
+  programName         String @map("program_name") @db.VarChar(100)
+
+  @@map("academic_settings")
+}
+
+model StudentGroupRange {
+  id           Int          @id
+  entryYear    Int          @map("entry_year")
+  studentGroup StudentGroup @map("student_group")
+  fromNo       Int          @map("from_no")
+  toNo         Int          @map("to_no")
+
+  @@unique([entryYear, studentGroup])
+  @@map("student_group_ranges")
+}
+
+model Selection {
+  studentId String   @map("student_id") @db.Char(11)
+  courseId  Int      @map("course_id")
+  course    Course   @relation(fields: [courseId], references: [id])
+  section   Int
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@id([studentId, courseId])
+  @@map("selections")
+}
+

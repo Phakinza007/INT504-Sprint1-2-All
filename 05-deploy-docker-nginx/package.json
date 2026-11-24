@@ -1,0 +1,39 @@
+{
+  "name": "int504-2026-project-group-44",
+  "version": "1.0.0",
+  "description": "INT504 group 44 schedule application",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env backend/server.js",
+    "dev": "node --watch --env-file-if-exists=.env backend/server.js",
+    "test": "node --test backend/app.test.js",
+    "build:css": "tailwindcss -i ./frontend/input.css -o ./frontend/output.css --minify",
+    "build:js": "esbuild frontend/scripts/my-schedule.js --bundle --format=iife --outfile=frontend/my-schedule.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy",
+    "prisma:seed": "node --env-file-if-exists=.env prisma/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IT-BANGMOD-INTEGRATED-PROJECT-2026/int504-2026-project-group-44.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@prisma/client": "^6.19.0",
+    "express": "^5.1.0",
+    "keycloak-js": "^26.2.5",
+    "prisma": "6.19.3"
+  },
+  "bugs": {
+    "url": "https://github.com/IT-BANGMOD-INTEGRATED-PROJECT-2026/int504-2026-project-group-44/issues"
+  },
+  "homepage": "https://github.com/IT-BANGMOD-INTEGRATED-PROJECT-2026/int504-2026-project-group-44#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.5",
+    "esbuild": "^0.28.2",
+    "tailwindcss": "4.3.5"
+  }
+}
