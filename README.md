@@ -15,15 +15,15 @@
 ## `02-frontend-sprint2-my-schedule/` — หน้า My Schedule (PBI3–7, เรียงตามลำดับทำงาน 0 → 8)
 | ไฟล์ | เจ้าของ | เอาไว้ทำอะไร |
 | :--- | :---: | :--- |
-| `0-my-schedule.html` | ทั้งทีม | โครง HTML ของหน้า My Schedule (2 ตาราง, ข้อความแจ้งเตือน, `<dialog>` ทั้งหมด) |
-| `1-auth.js` | Alan (PBI3) | ล็อกอิน/ออกจากระบบผ่าน Keycloak (`signIn`, `signOut`, `isLecturer`) |
-| `2-config.js` | Alan (PBI3) | ค่าตั้งต้น Keycloak (`url`, `realm`, `clientId`) |
-| `3-api.js` | Beam | ตัวช่วยยิง API กลาง (`apiRequest`, `getJson`) |
-| `4-profile.js` | Alan + Beam | ดึงโปรไฟล์นักศึกษา `GET /students/{id}` (404 คืน `null` ไม่เด้ง Error Dialog) |
-| `5-my-schedule.js` | Beam (PBI4) | ตัวคุมหลัก + `state` — ล็อกอิน → โหลด Profile → `Promise.all` โหลด `schedules` + `selections` |
-| `6-course-tables.js` | Beam (PBI4–5) | แยก 2 ตารางจาก State เดียว (`My Schedule` ใช้ `.get()`, `Courses to Choose` ใช้ `!has()`) + สร้างปุ่ม |
-| `7-selections.js` | Beam (PBI5) / Dragon (PBI6–7) | `handleSelect` (`POST 201`), `handleRemove` (`DELETE 204`), `handleChange` (`PUT 200`) |
-| `8-dialogs.js` | Beam (PBI4–5) / Dragon (PBI6–7) | กล่อง `showError`, `showMessage`, `askRemove`, `askChange` |
+| `my-schedule.html` | ทั้งทีม | โครง HTML ของหน้า My Schedule (2 ตาราง, ข้อความแจ้งเตือน, `<dialog>` ทั้งหมด) |
+| `auth.js` | Alan (PBI3) | ล็อกอิน/ออกจากระบบผ่าน Keycloak (`signIn`, `signOut`, `isLecturer`) |
+| `config.js` | Alan (PBI3) | ค่าตั้งต้น Keycloak (`url`, `realm`, `clientId`) |
+| `api.js` | Beam | ตัวช่วยยิง API กลาง (`apiRequest`, `getJson`) |
+| `profile.js` | Alan + Beam | ดึงโปรไฟล์นักศึกษา `GET /students/{id}` (404 คืน `null` ไม่เด้ง Error Dialog) |
+| `my-schedule.js` | Beam (PBI4) | ตัวคุมหลัก + `state` — ล็อกอิน → โหลด Profile → `Promise.all` โหลด `schedules` + `selections` |
+| `course-tables.js` | Beam (PBI4–5) | แยก 2 ตารางจาก State เดียว (`My Schedule` ใช้ `.get()`, `Courses to Choose` ใช้ `!has()`) + สร้างปุ่ม |
+| `selections.js` | Beam (PBI5) / Dragon (PBI6–7) | `handleSelect` (`POST 201`), `handleRemove` (`DELETE 204`), `handleChange` (`PUT 200`) |
+| `dialogs.js` | Beam (PBI4–5) / Dragon (PBI6–7) | กล่อง `showError`, `showMessage`, `askRemove`, `askChange` |
 
 ---
 
